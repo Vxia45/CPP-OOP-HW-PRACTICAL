@@ -7,37 +7,44 @@ protected:
     double fee;
 
 public:
-    DanceSchool(double fee) : fee(fee), dancersCount(0) {}
+    DanceSchool(double fee) {
+        this->dancersCount = 0;
+        this->fee = fee;
+    }
 
     void setDancersCount(int count) {
         if (count < 10 || count > 25) {
             cout << "Dancers should be between 10 and 25!" << endl;
         } else {
-            dancersCount = count;
+            this->dancersCount = count;
         }
     }
 
     int getDancersCount() const {
-        return dancersCount;
+        return this->dancersCount;
     }
 
     ~DanceSchool() {
-        cout << "Dancers: " << dancersCount << endl;
-        cout << "Fee: " << fee << endl;
+        cout << "Dancers: " << this->dancersCount << endl;
+        cout << "Fee: " << this->fee << endl;
     }
 };
 
 class DanceSchoolChitalishte : public DanceSchool {
 private:
-    string location = "Salona na NPG po KTS";
+    string location;
 
 public:
-    DanceSchoolChitalishte(double fee, const string& loc) : DanceSchool(fee), location(loc) {}
+    DanceSchoolChitalishte(double fee,  const string& loc) : DanceSchool(fee) {
+        this->location = loc;
+    }
 
-    DanceSchoolChitalishte() : DanceSchool(0) {}   
+    DanceSchoolChitalishte(): DanceSchool(0) {
+        this->location = "Salona na NPG po KTS";
+    }
 
     ~DanceSchoolChitalishte() {
-        cout << "Location: " << location << endl;
+        cout << "Location: " << this->location << endl;
     }
 };
 
@@ -49,7 +56,7 @@ int main() {
     DanceSchoolChitalishte school2(120, "Chitalishte Vuzrashdane");
     school2.setDancersCount(20);
 
-    DanceSchoolChitalishte school3;  
+    DanceSchoolChitalishte school3;
 
     return 0;
 }
